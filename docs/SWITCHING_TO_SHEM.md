@@ -122,3 +122,9 @@ This planning change updates Shem documentation only. It does not alter a deploy
 - [ ] Pending intake, retained claims/source IDs, guidance, question/hypothesis history and task citations survive switching.
 - [ ] Base remains independently usable within its support envelope; reference promotion and legacy designation have separate retained decisions.
 - [ ] Exact commands/configuration and upstream links are updated in the same release as the implementing behavior.
+
+## Tracked host preference proposal
+
+[Chelm-host #59](https://github.com/apenczolgolonabijorbiper/chelm-host/issues/59) tracks `preferred_cognizer` and enforceable new-work eligibility across local/remote bindings. It is proposed, not implemented or published. It can be developed before Shem using independent worker fixtures; the host will continue to leave inference to cognizers.
+
+Shem must negotiate the eventual published routing capability and supported host/Harness tuple before claiming host-enforced preference. Application-controlled scheduling remains the available integration design until then. The proposal includes trusted registration, prefer/required modes, bounded fallback, effective status and prospective policy changes that preserve existing ownership and unknown-submit recovery. Its exact configuration is not accepted by current releases.
