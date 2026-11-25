@@ -32,6 +32,31 @@ flowchart TD
 
 Shem does not select/migrate databases, replace Git, rewrite vendor packages, forge processed-source rows, approve its own learning, execute collection requests without authorization or introduce a mandatory server. The host remains the publication authority. A model/API call is one step in cognition, not the complete cognitive loop.
 
+## Reuse of the base cognizer and reference succession
+
+This plan uses the existing integrated cognitive workflow as the starting point for Shem, not merely its data formats. **Base cognizer** means the supported **Chelm + Harness + configured inference-capable agent** workflow: upstream packages supply the cognitive procedures, public APIs, prompts, worker lifecycle, runner and validation; the agent supplies actual interpretation/inference. Neither host nor Harness alone calls a model.
+
+[#15](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/15) inventories these assets and retained observed experience before implementing Shem's core. Classify each asset as reused unchanged, consumed through a public API, adapted into Shem orchestration, retained in the base integration or test-only. Pin versions/hashes, licensed provenance and known limitations; never certify an inherited script merely because it already exists. Preserve Harness semantics and host authority rather than creating parallel copies.
+
+| Stage | Reference cognizer | Shem status | Base status |
+| --- | --- | --- | --- |
+| Initial | Existing supported base workflow | Planned, then implemented from the base procedures | Independently runnable initial reference |
+| Comparative qualification | Base remains reference | Candidate; may have qualified published releases | Retained benchmark and operational alternative |
+| Explicit promotion | Shem becomes the reference/recommended cognizer for new integrations | Mature against agreed retained evidence | Remains an optional supported base within its declared envelope |
+| Ongoing development | Shem is the target for advanced cognition/orchestration | Receives new inference/agent features | Maintains shared-contract compatibility, security and correctness; need not duplicate every optional advanced feature |
+
+[#16](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/16) owns the later maturity/promotion decision, after comparative acceptance #13 and a qualified release #14. Initial release and promotion are distinct milestones; promotion is not an automatic consequence of packaging or a version number. Harness remains the normative source of cognitive/memory rules even when Shem is the reference implementation.
+
+Before running comparisons, agree the capability/task matrix, semantic quality/regression thresholds, critical-invariant rules, repeated-run coverage and resource limits. Retain the same synthetic source/policy snapshots and declared budgets for both paths; match model/settings where possible and disclose differences or unknowns. Use separate disposable runtimes or a genuinely non-publishing evaluation interface. Never run duplicate live publication as a shadow comparison.
+
+Assess grounding, intent fulfillment, temporal/identity/history correctness, uncertainty, recovery and resource behavior. Compare meanings and valid outcomes, not byte-identical generated prose or arbitrary IDs. A known base mistake is adjudicated against original evidence and Harness contracts; it is not an error Shem must reproduce. Retain case-level observations and actual semantic verdicts rather than treating the base as an infallible oracle.
+
+Cognizer selection belongs to explicit application/operator configuration, independently of storage/provider selection. The base works without Shem, and either cognizer may be local or remote. While Shem matures, existing integrations continue using the base. After promotion, new setup examples recommend Shem; existing deployments keep their selected path.
+
+A switch or operational rollback stops new claims, reconciles unknown submissions/in-flight work, settles/releases assignments and then selects the other compatible cognizer against the same current runtime. It does not restore an older memory state, replay completed observations, implicitly fall back after an unknown publication, reset an instance or migrate a provider. The host's receipts and fencing remain authoritative.
+
+Maintaining the base means preserving the existing prompts/procedures/public integrations and their declared compatibility; it does not add a new LLM API client to Chelm or Harness. Future upstream README/setup/reference-designation changes require coordinated reviewable follow-ups. This revision records that work in Shem only and does not alter either upstream runtime.
+
 ## Verified upstream baseline
 
 The following is a dated planning snapshot, not a compatibility certification.
@@ -71,15 +96,16 @@ No SQLite provider, migration or unsupported larger-memory capacity is implied. 
 
 ## Implementation sequence and work packages
 
-P0/P1 describe implementation priority. **Every package below is required for the first advertised release**, unless a capability is explicitly narrowed and the tracker/docs/acceptance matrix are updated together. There is no mock-only or pilot completion gate.
+P0/P1 describe implementation priority. **The initial implementation packages and base inventory #15 are required for the first advertised release**, unless a capability is explicitly narrowed and the tracker/docs/acceptance matrix are updated together. **Reference promotion #16 is a later maturity milestone**, after at least one qualified published Shem release; it is required to complete the full succession tracker, not to publish an initial non-reference release. There is no mock-only or pilot completion gate.
 
 | Phase | Issue | Deliverable | Depends on |
 | --- | --- | --- | --- |
+| A: base inventory | [#15](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/15) | Capture the current reference workflow, reuse map, observed evidence and comparison cases | — |
 | A: contracts | [#2](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/2) | Architecture, versioned interfaces, exact published compatibility and upstream upgrade dependency | — |
 | A: specifications | [#12](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/12) | SudoLang specs, schemas, traceability and fixture/parity framework; evolves with all later work | [#2](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/2) |
 | B: connectivity | [#3](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/3) | Local CLI, stdio MCP and HTTP MCP worker bindings | [#2](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/2) |
 | B: inference | [#4](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/4) | Pluggable inference and configurable OpenAI-compatible reference adapter | [#2](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/2) |
-| C: cognition | [#5](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/5) | Bounded Harness-guided retrieval/inference/tool driver | [#3](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/3), [#4](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/4) |
+| C: cognition | [#5](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/5) | Bounded Harness-guided driver derived from the base workflow | [#3](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/3), [#4](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/4), [#15](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/15) |
 | C: observations | [#6](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/6) | Provider semantic processing and explicit legacy compatibility | [#5](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/5) |
 | C: questions | [#7](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/7) | Memory-backed tasks, branching conversations and separate learning proposals | [#5](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/5) |
 | C: agents | [#8](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/8) | Configured CLI agent adapter and capability-based MCP delegation/tools | [#2](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/2), [#5](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/5) |
@@ -88,8 +114,9 @@ P0/P1 describe implementation priority. **Every package below is required for th
 | D: evidence | [#11](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/11) | Provenance, limits, phase measurements and durable completion evidence | [#2](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/2), [#4](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/4), [#5](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/5) |
 | E: acceptance | [#13](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/13) | Deterministic, semantic, real-API and actual-agent qualification | All preceding packages |
 | E: release | [#14](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/14) | Verified ZIP, installation/upgrade, exact compatibility and upstream drift maintenance | [#13](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/13) |
+| F: reference succession | [#16](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/16) | Explicit maturity/promotion decision, optional-base support and recovery-aware selection/rollback | #15, #13, at least one qualified published release from #14 |
 
-Contracts/specification work starts first. Host connectivity and the inference adapter can be implemented independently after the contracts settle. Recovery, setup and evidence design begin during core implementation rather than being retrofitted at release time.
+Base inventory begins alongside contracts; it feeds the core driver and comparison rubric. Contracts/specification work starts first. Host connectivity and the inference adapter can be implemented independently after the contracts settle. Recovery, setup and evidence design begin during core implementation rather than being retrofitted at release time.
 
 ## Proposed implementation shape
 
@@ -137,6 +164,7 @@ Scheduling is an explicitly enabled Shem/application concern. Respect no-work de
 - Platforms: Windows Server 2022, Linux and macOS on declared Node runtimes.
 - Failures: malformed/hostile model output, rate limit, hangs, cancellation, lost claim/read/submit responses, process/service restart, source/policy/head changes, Unicode boundaries and cross-principal/instance isolation.
 - Semantics: evidence entailment, relevance, independence, contradictions, identity, temporal correctness, uncertainty, branching replies and actual intent fulfillment.
+- Reference comparison: base/Shem matched synthetic snapshot cases, declared models/budgets, repeated-run variability, adjudicated base defects and explicit criteria for the later #16 promotion.
 
 Deterministic mocks and SDK probes establish only their measured behavior. Required real-inference or external-agent checks remain pending when credentials/environment are unavailable. Semantic verdicts are recorded case by case, with reviewer independence stated honestly. Do not retain private chain-of-thought; concise findings and verification are sufficient.
 
