@@ -1,7 +1,7 @@
 # Using, preferring and switching to Shem
 
-Status: **design and release-documentation requirements; Shem execution is not implemented yet**.
-Checked 2026-11-25. Workstream: [#17](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/17).
+Status: **Shem execution is not implemented yet; host routing is published in Chelm 1.4.0**. Verify the published release and advertised capability before using the host examples below.
+Checked 2026-11-26. Workstream: [#17](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/17).
 Related: [setup #10](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/10),
 [base inventory #15](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/15),
 [promotion #16](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/16).
@@ -20,18 +20,18 @@ Shem may run alongside the host or remotely through its existing authenticated M
 
 | Item | Checked published state | Instruction |
 | --- | --- | --- |
-| Latest Harness | [0.14.0](https://github.com/apenczolgolonabijorbiper/golem14-harness/releases/tag/v0.14.0) | Alignment target; not automatically compatible with latest Chelm |
-| Latest Chelm | [1.3.0](https://github.com/apenczolgolonabijorbiper/chelm-host/releases/tag/v1.3.0) | Its [compatibility declaration](https://github.com/apenczolgolonabijorbiper/chelm-host/blob/v1.3.0/compatibility.json) supports Harness **0.13.0 exactly** |
-| Existing supported owner pair | Chelm 1.3.0 + Harness 0.13.0 | Baseline for implementation; retain exact verified release pins |
-| Shem | Planning artifacts only | No installed/runnable Shem release or supported triplet yet |
-| Host cognizer preference | No selector in the [published runtime schema](https://github.com/apenczolgolonabijorbiper/chelm-host/blob/v1.3.0/schemas/runtime-config.schema.json) | Do not add a fictional `preferred_cognizer` property or use an invented switch flag |
-| Existing work delivery | Workers pull work through local/remote contracts | Select which worker is launched/eligible through application/operator scheduling; a preference label alone cannot enforce priority |
+| Harness reference | [0.13.0](https://github.com/apenczolgolonabijorbiper/golem14-harness/releases/tag/v0.13.0) | Deterministic reference for Chelm 1.4.0; other approved versions are feature-qualified in its catalog |
+| Chelm host contract | [1.4.0](https://github.com/apenczolgolonabijorbiper/chelm-host/releases/tag/v1.4.0) | Require the published package, integrity checks and `cognizer-routing-v1`; older 1.3.1 does not accept the selector |
+| Other approved Harness versions | 0.11.0, 0.12.0, 0.13.1–0.13.3, 0.14.0 | File workers from 0.11.0, cognition from 0.12.0, providers from 0.13.0 for explicitly cataloged releases; no inference from a version range |
+| Shem | Planning artifacts only | No installed/runnable Shem release or qualified triplet yet |
+| Host preference | Optional `preferred_cognizer` in [runtime configs 2/3](https://github.com/apenczolgolonabijorbiper/chelm-host/blob/v1.4.0/schemas/runtime-config.schema.json) | Generic host eligibility; no automatic Shem default or mandatory install |
+| Work delivery | Local CLI/stdio and authenticated HTTP MCP | Routing governs new assignments; owner recovery remains available |
 
 The release gate must select a mutually supported **Shem + Chelm + Harness** triplet, pin exact package/manifest identities and record observed acceptance. Recheck current releases and capability declarations at implementation and release time. Never pair two newest releases merely because both are newest.
 
-## Proposed selection policies
+## Selection policies
 
-These labels describe intended behavior, **not existing Chelm schema properties, flags or runnable Shem syntax**. Final naming/configuration belongs to #2/#10/#17.
+Shem launch/inference syntax remains planned in #2/#10/#17. Chelm 1.4.0 implements the host-side modes below; the complete accepted configuration and handshake follow later in this guide.
 
 | Policy | Intended behavior | If Shem is unavailable |
 | --- | --- | --- |
@@ -39,11 +39,11 @@ These labels describe intended behavior, **not existing Chelm schema properties,
 | Prefer Shem | Route eligible new work to qualified ready Shem first; base is an explicitly configured alternative | Choose base only before assignment under the declared readiness/timeout/capability policy |
 | Shem only | Route new work exclusively to qualified Shem | Retain pending work and report unavailable; no implicit fallback |
 
-Preference belongs initially to the consuming application's scheduler/service supervisor/operator configuration. It must specify the applicable runtime, observation/cognitive queue coverage, worker readiness/capabilities, finite readiness timeout and fallback policy. Existing host authorization remains separate.
+For an older host, preference belongs to the application's scheduler/service supervisor/operator configuration. A label or concurrency limit does not enforce priority.
 
-A base worker independently polling the same eligible queue can claim first. Setting `remote.max_active_work` to 1 limits concurrency; it does not prioritize Shem. A cooperative prefer-Shem deployment must prevent unselected workers from requesting new work for that scope. Separate configured services/principals and existing authentication controls can help administer access, but availability, preference and authorization must not be conflated.
+For Chelm 1.4.0, negotiate `cognizer-routing-v1` and use explicit `prefer` or `require` policy for the selected observation/cognitive queues. The host binds an operator-configured logical cognizer to an authenticated principal or the actual local OS account/hostname, checks declared readiness and exact contracts, and enforces the bounded per-work grace/fallback rule under the claim lock. Registration is a trusted declaration, not proof of binary identity or model quality. Multiple cognizers sharing one OS account cannot be distinguished; use separate trusted accounts/principals. Keep runtime administration protected by OS permissions.
 
-If simultaneous independent clients need a host-enforced priority or cognizer eligibility rule, that needs a separately implemented/tested/published Chelm routing capability and compatible schema. Do not advertise it as already supplied by the current MCP server. Local processes with owner privileges also require an actual launch/operational policy; a display label is not enforcement.
+Absent/disabled policy retains current compatible-worker dispatch. Existing local/remote authorization still applies, and a capability advertisement cannot grant runtime authority. Shem must implement the handshake before claiming host-enforced preference; this guide does not claim that client exists.
 
 After any worker owns an assignment, the choice is fixed for that attempt. A timeout, disconnect or unknown submission is a recovery case, not permission to run the same work through the other cognizer.
 
@@ -80,7 +80,7 @@ Installing a new compatible host/Harness pair, when needed, is a separate docume
 | Local CLI / stdio | Replace the selected base invocation with the tested Shem launcher and private config; stop the prior loop after draining | Same runtime, public worker contracts, OS ownership requirements and canonical storage |
 | Remote MCP | Start qualified Shem with the existing runtime endpoint and its configured principal/credential source; stop old competing polling for the selected scope | Same authenticated MCP service, runtime binding, source reservations and publication authority |
 | Colocated app/service | Select Shem driver/service in application configuration; bound execution outside request timeouts where appropriate | Same host API/read models and durable task/intake behavior |
-| Prefer Shem with base available | Use tested application scheduling/readiness/eligibility and explicit pre-assignment fallback; future host priority only when advertised | Same independently recoverable assignments/receipts; no double invocation on unknown outcomes |
+| Prefer Shem with base available | Use tested application scheduling/readiness/eligibility and explicit pre-assignment fallback; Chelm 1.4.0 routing only after contract negotiation | Same independently recoverable assignments/receipts; no double invocation on unknown outcomes |
 
 The release guide must include exact tested commands/config files for each advertised recipe, paths with spaces/Unicode on Windows, service restart behavior and the installed-version/capability check. These details remain pending implementation; placeholders are not acceptance evidence.
 
@@ -111,7 +111,7 @@ At the corresponding stage, prepare reviewable follow-ups in the owning projects
 - **Harness:** keep generic normative cognitive procedures; add tested Shem integration links/examples and later recommendation metadata without hard-coding a mandatory Shem implementation.
 - **Shem:** ship exact recipes, schemas/specs/fixtures, capability preflight, effective-selection diagnostics and switch/rollback evidence. Keep README/plan/release state aligned.
 
-This planning change updates Shem documentation only. It does not alter a deployed runtime or claim those upstream features already exist.
+This guide update does not modify a deployed runtime or implement a Shem executable. The host selector is independently supplied by the version-qualified Chelm release.
 
 ## Acceptance checklist
 
@@ -123,8 +123,67 @@ This planning change updates Shem documentation only. It does not alter a deploy
 - [ ] Base remains independently usable within its support envelope; reference promotion and legacy designation have separate retained decisions.
 - [ ] Exact commands/configuration and upstream links are updated in the same release as the implementing behavior.
 
-## Tracked host preference proposal
+## Chelm 1.4.0 host selection and negotiation recipe
 
-[Chelm-host #59](https://github.com/apenczolgolonabijorbiper/chelm-host/issues/59) tracks `preferred_cognizer` and enforceable new-work eligibility across local/remote bindings. It is proposed, not implemented or published. It can be developed before Shem using independent worker fixtures; the host will continue to leave inference to cognizers.
+Host implementation: [Chelm #59 / PR #64](https://github.com/apenczolgolonabijorbiper/chelm-host/pull/64). Normative configuration and recovery: [version-qualified host guide](https://github.com/apenczolgolonabijorbiper/chelm-host/blob/v1.4.0/docs/COGNIZER_ROUTING.md). Routing acceptance uses deterministic independent clients; it does not qualify actual Shem cognition.
 
-Shem must negotiate the eventual published routing capability and supported host/Harness tuple before claiming host-enforced preference. Application-controlled scheduling remains the available integration design until then. The proposal includes trusted registration, prefer/required modes, bounded fallback, effective status and prospective policy changes that preserve existing ownership and unknown-submit recovery. Its exact configuration is not accepted by current releases.
+### Preflight
+
+Verify the release ZIP/checksum and its extracted inventory. Keep host configuration in the private runtime, outside vendor files. These are implemented host commands; they do not launch Shem:
+
+```sh
+node /path/to/chelm-host/bin/chelm.mjs version
+node /path/to/chelm-host/bin/chelm.mjs verify --runtime /private/runtime
+node /path/to/chelm-host/bin/chelm.mjs routing status --runtime /private/runtime
+```
+
+Require `version.capabilities` to contain `cognizer-routing-v1`, `contracts.cognizer_routing=1`, and the selected Harness feature(s) to pass verification. Inspect both queues and drain/reconcile existing work as described above. The package version alone is insufficient.
+
+### Preview and apply host policy
+
+Provision the remote principals in the MCP service's authenticated runtime allowlist first. A routing entry does not grant service access. Create a private `policy-change.json`, replacing the revision with the current `routing status.revision` and principal names with real provisioned identities:
+
+```json
+{
+  "expected_revision": 0,
+  "preferred_cognizer": {
+    "schema_version": 1,
+    "mode": "prefer",
+    "cognizer_id": "shem",
+    "work_kinds": ["observation", "cognitive"],
+    "grace_seconds": 60,
+    "fallback": ["base"],
+    "readiness_ttl_seconds": 120,
+    "workers": [
+      {"binding_id":"shem-one","transport":"remote","principal":"shem-worker","cognizer_id":"shem"},
+      {"binding_id":"base-one","transport":"remote","principal":"base-worker","cognizer_id":"base"}
+    ]
+  }
+}
+```
+
+```sh
+node /path/to/chelm-host/bin/chelm.mjs routing preview --runtime /private/runtime --input policy-change.json
+node /path/to/chelm-host/bin/chelm.mjs routing apply --runtime /private/runtime --input policy-change.json
+```
+
+Preview writes nothing. Apply uses revision CAS and affects new assignments only. For local CLI/stdio, use a binding with `transport: "local"`, the actual `local_identity.principal` and `local_identity.host` returned by host status, and the desired cognizer ID. Client-supplied executor/host metadata cannot choose that binding.
+
+### Required Shem client handshake (to implement before claiming support)
+
+1. On the authenticated worker connection, discover `chelm_routing_status`, `chelm_routing_register` and `chelm_routing_heartbeat`. Obtain this principal's required exact Harness manifest digest and path contracts from status.
+2. Register only contracts/capabilities actually implemented. Remote observations use `remote-worker-v2`; local file workers use `file-worker-v1`; provider workers use `memory-worker-v3`; cognitive tasks use `cognitive-worker-v2`. Use the exact discovered manifest digest, never an arbitrary package version/model/executor name.
+3. Declare `cognizer-routing-v1` and required work capabilities: `purpose-guidance-v2` for file observations, `memory-provider-v1` for providers, and the task/context/result, learning-hypothesis and unknown-confidence cognitive capabilities advertised by the host for cognition. Registration/heartbeat never grant data access or reset work grace.
+4. Heartbeat before the configured readiness TTL expires while ready. Local equivalents are `routing-worker status|register|heartbeat` via the host CLI. A missing/incompatible binding must produce a visible refusal, not a forged identity.
+5. Honor `deferred` and `busy` plus bounded retry hints. Prefer mode permits only ready allowlisted fallback after the original per-work grace; renewed heartbeats do not extend that grace. Require mode never falls back. Ordinary no-work remains distinct.
+6. Retain original request/work/attempt/submission IDs and receipts. Recovery of owned or unknown-outcome work precedes a new claim, even after preference changes. Never run it again through another cognizer.
+
+### Require and rollback
+
+To require Shem, apply the complete policy with the current revision, `mode: "require"` and `fallback: []`. Existing base assignments remain with their owners. Let them finish or explicitly recover/cancel/requeue through existing operations; a policy change alone does not transfer them.
+
+Rollback uses the same preview/apply interface and current revision: apply a retained earlier complete policy, or `preferred_cognizer: null` for unrestricted compatible-worker dispatch. Keep the current memory/provider/HEAD, pending input, source identities and guidance. Re-register after a settled checkpoint restore, which retains policy/grace and clears readiness.
+
+### Remaining Shem acceptance
+
+Shem #17 remains open for a runnable client, exact tested launcher/inference recipes and a qualified Shem + Chelm + Harness triplet. Test actual observation and no-inbox cognitive invocations, competing base workers, expiry/incompatibility, lost responses, switch and rollback with truthful process/model evidence. Host routing tests do not satisfy those Shem/LLM gates, promote Shem to reference or designate the base legacy.
