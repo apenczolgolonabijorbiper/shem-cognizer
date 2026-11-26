@@ -1,6 +1,6 @@
 # Using, preferring and switching to Shem
 
-Status: **Shem execution is not implemented yet; the host routing contract targets Chelm 1.4.0**. Verify the published release and advertised capability before using the host examples below.
+Status: **Shem execution is not implemented yet; host routing is published in Chelm 1.4.0**. Verify the published release and advertised capability before using the host examples below.
 Checked 2026-11-26. Workstream: [#17](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/17).
 Related: [setup #10](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/10),
 [base inventory #15](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/15),
