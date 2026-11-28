@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "scope",
+    "invocation_id",
+    "phase",
+    "queue",
+    "deadline",
+    "tool_calls"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "scope": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "invocation_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "queue": {
+      "enum": ["memory", "cognitive"]
+    },
+    "phase": {
+      "enum": [
+        "claim_pending",
+        "loading",
+        "reasoning",
+        "read_pending",
+        "inference_pending",
+        "draft",
+        "submit_pending",
+        "committed",
+        "no-work",
+        "stopped",
+        "abandoned"
+      ]
+    },
+    "deadline": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "tool_calls": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "additionalProperties": true
+}

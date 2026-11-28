@@ -1,31 +1,56 @@
 # shem-cognizer
-Optional cognizer that brings Golem14-harness to life in Chelm-host through local or remote cognitive processing
 
-## Implementation plan
+Optional cognizer that brings Golem14-harness to life in Chelm-host through local
+or remote cognitive processing.
 
-Shem is currently a planned project. Its optional cognizer will perform
-Harness-defined observation analysis and memory-backed cognitive tasks using
-replaceable AI API and agent adapters. Chelm remains the owner of storage,
-authorization and publication; other agents may continue to use Chelm directly.
+Shem now has a runnable **0.1.0-dev.1 implementation candidate**. It processes
+provider observations and memory-backed cognitive tasks through Chelm's public
+CLI, stdio MCP or authenticated HTTP MCP contracts, using a configured
+OpenAI-compatible API or a bounded noninteractive agent process. Chelm owns
+canonical storage, authorization, leases, validation, receipts and publication;
+Harness defines cognitive/evidence semantics. Existing agents remain independent.
 
-- [Implementation tracker #1](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/1)
-- [Architecture and phased implementation plan](docs/IMPLEMENTATION_PLAN.md)
-- [Using, preferring and switching to Shem](docs/SWITCHING_TO_SHEM.md)
+```sh
+npm ci --ignore-scripts
+node bin/shem.mjs doctor --config /absolute/private/shem.json
+node bin/shem.mjs once --config /absolute/private/shem.json
+node bin/shem.mjs status --config /absolute/private/shem.json
+node bin/shem.mjs resume --config /absolute/private/shem.json
+```
 
-The plan contains 16 work packages with dependencies and acceptance criteria.
-The latest published Harness is 0.14.0; published Chelm 1.3.0 supports Harness
-0.13.0 exactly. The plan explicitly tracks the supported-pair alignment required
-before a Shem release can claim compatibility with the latest capabilities.
+Start from [examples/local.json](examples/local.json) and the
+[operator guide](docs/OPERATOR_GUIDE.md). Node >=22.12.0 is required. Remote workers
+need no owner filesystem, Git, Python or installed Harness. Local owner operations
+retain those upstream requirements. Keep configuration, credentials and state private.
 
-The existing Chelm + Harness + configured agent workflow remains the initial
-reference cognizer. Shem will reuse its procedures and retained experience,
-then undergo comparative qualification. A later explicit promotion can make
-Shem the reference for new integrations while retaining the independently
-usable base as an optional supported path. See [base inventory #15](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/15)
-and [reference succession #16](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/16).
+The implemented pair is pinned to published **Chelm 1.4.0 + Harness 0.14.0**.
+Latest published Harness **0.15.0** is not approved by that host release. Unknown
+pairs fail closed; no upstream version check is bypassed. Native remote preflight
+requires a provisioned Chelm routing identity to inspect its exact Harness digest.
 
-The switch guide distinguishes current host capabilities from planned Shem
-configuration, including effective worker preference, draining/recovery,
-verification and rollback. After Shem reference promotion, a separate announced
-decision may designate the base integration legacy within a defined support
-policy. See [transition workstream #17](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/17).
+This is **not a qualified release**. Deterministic tests use synthetic API/process
+fixtures and actual published host receipts; they do not qualify a real model or
+agent. Real-inference acceptance, separate semantic/base comparison, the latest-pair
+gate and the remaining implementation/acceptance matrix still block completion of
+[#1](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/1). Config-2
+observation workers, optional external MCP tools and local-session checkpointing
+are not implemented. No consumer runtime is upgraded or reset.
+
+- [Implementation and acceptance status](docs/IMPLEMENTATION_STATUS.md)
+- [Architecture and contracts](docs/ARCHITECTURE.md)
+- [Base workflow inventory and reuse](docs/BASE_WORKFLOW.md)
+- [Selecting, switching and rollback](docs/SWITCHING_TO_SHEM.md)
+- [Normative SudoLang specification](spec/COGNIZER.sudo.md)
+- [Portable fault vectors](fixtures/operational-cases.json) and [porting guide](docs/PORTING.md)
+- [Original programme plan](docs/IMPLEMENTATION_PLAN.md)
+
+The base (Chelm + Harness + a configured agent) remains the initial reference.
+Shem's later promotion in #16 and any subsequent base-legacy designation require
+separate evidence-backed decisions. Installing this candidate changes neither.
+
+Run `npm test` for unit tests; upstream integration cases are skipped unless both
+SHEM_CHELM_ROOT and SHEM_HARNESS_ROOT identify verified published packages. Follow
+the operator guide to run the full deterministic matrix. `npm run check` verifies
+source/specification/fixture hashes. `node tools/package.mjs --candidate` creates
+an explicitly unqualified archive/checksum; regular `npm run package` refuses while
+release gates are pending. No publication workflow is enabled.

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-28",
+  "platform": "Linux",
+  "runtime": "Node 24.22.3 / Python 3.12.14",
+  "pair": {
+    "chelm": "1.4.0",
+    "harness": "0.14.0"
+  },
+  "deterministic": {
+    "tests": 29,
+    "passed": 29,
+    "failed": 0,
+    "skipped": 0,
+    "log": "deterministic-linux.txt",
+    "actual_commit_response_loss": "response-loss-recovery.json"
+  },
+  "minimum_node": {
+    "version": "22.12.0",
+    "safety_and_parity_cases": 17,
+    "passed": 17,
+    "full_integration": "CI configured; no minimum-runtime integration result claimed here"
+  },
+  "source_hashes": {
+    "bin/shem.mjs": "bd12fdf0644476e5b901b0d2d11714a23fad5d609dabba00052132f42164f36d",
+    "compatibility.json": "8c8f51ef3cef5e3953260b3465e9b44a6b766dcb8ceea778a8a9e0ca4e516db7",
+    "package-lock.json": "717b46de1f6fcd3665920a3ef1a0ae159be3827f80a1e0e777da1f12ac740c02",
+    "package.json": "9e43b7461e4f24c11ead15ec587d538cb9e7bd0cc88ff267c5cf9d588af2a8ae",
+    "schemas/config.schema.json": "642d627cfb9017fb19cd778551636eaf625a7d02759af3a4e099a8303860389e",
+    "schemas/invocation.schema.json": "3d66bd0efbaede45b513b52b6b6c4a8f11e7f23db0a155e0dda80aa079f053e6",
+    "schemas/result.schema.json": "b92c4bc5862f7a0d586c20a7a1201d10077a953f7efcd8ece316d2630a3798f9",
+    "schemas/step.schema.json": "67b0ca295cdbeca6e9e768db601973a2f7c987c4fb89e63440ce4e36db4bac3e",
+    "src/config.mjs": "25d9a4852ac5e8782e35e045c3cbbf3930ec4d85290ffc385d57c57d38324ec3",
+    "src/driver.mjs": "850402f0825f93f8c8233ee205c60ef60c9e5dd5a9a6291eb0a6b2c8076f171f",
+    "src/host.mjs": "c3552032aa9f47e91f06b356187294b99fe1ffb34b342ff2154769913aea5e72",
+    "src/inference.mjs": "a818688d3c20578b52526086bc2c4c6478d8afa9625cbb8a9ea8efaf1d273732",
+    "src/process.mjs": "f4bea412e76206d9c2e351d1e16f8170f397ce1f376fbeb8d452042733bf0b0f",
+    "src/state.mjs": "9bd4420d74794c21b7afc09af050bb5cde138057f822317e9196e96ab9c966bb",
+    "src/util.mjs": "f125f0ed0354d08afe898843cec874ba0ebf71e46ce379d6f052640f6f6c7a07"
+  },
+  "candidate_packaging": "Unqualified candidate archive/checksum built; extracted package installed with locked cached dependencies and passed parity smoke checks. No publication.",
+  "semantic_review": null,
+  "actual_model_acceptance": null,
+  "actual_agent_acceptance": null,
+  "base_comparison": null,
+  "reference": "base",
+  "release_ready": false,
+  "consumer_changes": false,
+  "limits": [
+    "Synthetic deterministic inference/process fixtures. No language model used.",
+    "The detailed first-release matrix remains incomplete.",
+    "Platform CI is separate from local observed results."
+  ]
+}

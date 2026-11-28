@@ -1,0 +1,22 @@
+{
+  "name": "shem-cognizer",
+  "version": "0.1.0-dev.1",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "bin": {
+    "shem": "bin/shem.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node tools/parity.mjs",
+    "package": "node tools/package.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "ajv": "8.17.1",
+    "ajv-formats": "3.0.1"
+  }
+}

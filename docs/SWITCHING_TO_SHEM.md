@@ -1,3 +1,48 @@
+# Current candidate switching procedure
+
+The runnable candidate is documented in [OPERATOR_GUIDE.md](OPERATOR_GUIDE.md).
+Use the exact pinned pair and run `doctor --config FILE` first. This is a concrete
+recovery procedure, not certification of the full switch matrix in #17.
+
+1. Stop new claims from all affected base/Shem processes on both queues, preserving
+   application intake. Inspect host lists/status for every affected authenticated
+   identity; one Shem state directory is not a global host-work inventory.
+2. Run `shem status --config FILE` and `shem resume --config FILE` for each old Shem
+   invocation. Unknown submissions require status/receipt reconciliation before
+   changing credentials, config or worker selection. Do not infer completion from
+   uploaded bytes, validation or a missing local process.
+3. Settle/abandon owned active work through its original identity. An unknown
+   submission must be resolved first; an interrupted model call may have cost and
+   needs explicit operator review. Do not copy assignments to another identity.
+4. Keep canonical current memory, pending inputs and receipts. Neither switch nor
+   rollback restores an older checkpoint, resets memory or replays processed sources.
+5. Select the intended private Shem config under its supervisor. `doctor` verifies
+   the pair and capabilities; `once` runs one bounded invocation; `loop` is finite.
+   For remote operation provision the host routing binding first as documented in
+   published Chelm 1.4.0 docs/COGNIZER_ROUTING.md. Shem registers its readiness but
+   cannot change operator routing policy. Enforced preference requires the actual
+   configured principal; executor.id/model are provenance fields, not authority.
+6. Verify the selected process/principal and retained host receipts. Resume normal
+   intake/processing. Test synthetic observations/questions only on disposable
+   runtimes. Operational rollback repeats the same drain/reconcile/select steps.
+
+Base-only, prefer-Shem and Shem-only are operator policies. An unregistered base
+worker cannot be controlled merely by setting Shem max-active or changing an
+executor label. Use published Chelm routing `preview`/`apply` administration with
+expected_revision, explicit trusted bindings, bounded grace/fallback and separate
+identities; do not have Shem silently rewrite it. CLI/stdio processes under one OS
+account share an identity. Readiness registration is not a model-quality verdict.
+
+The base remains the reference. Promotion/legacy recommendation changes and
+installed selection are independent. No automatic fallback may replay owned or
+uncertain work. Competing-worker/fallback/rollback acceptance is still pending.
+
+---
+
+The following is the original 2026-11-25 planning snapshot. Its version and
+capability statements are historical; the current procedure/status above takes
+precedence.
+
 # Using, preferring and switching to Shem
 
 Status: **Shem execution is not implemented yet; host routing is published in Chelm 1.4.0**. Verify the published release and advertised capability before using the host examples below.

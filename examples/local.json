@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "state_dir": "/private/shem-state",
+  "host": {
+    "transport": "cli",
+    "root": "/vendor/chelm-host",
+    "runtime": "/private/golem-runtime",
+    "chelm_version": "1.4.0",
+    "harness_version": "0.14.0"
+  },
+  "inference": {
+    "kind": "openai",
+    "base_url": "https://your-gateway.example/api/mli/v1",
+    "key_env": "SHEM_API_KEY",
+    "model": "your-model",
+    "stream": false,
+    "mode": "structured_text"
+  },
+  "executor": {
+    "id": "shem-candidate",
+    "kind": "agent",
+    "model": "unknown (requested model recorded separately)",
+    "host": "configured-cognizer"
+  },
+  "queues": ["memory", "cognitive"],
+  "limits": {
+    "rounds": 8,
+    "tool_calls": 90,
+    "context_bytes": 1048576,
+    "output_bytes": 262144,
+    "elapsed_ms": 300000,
+    "request_ms": 30000,
+    "max_output_tokens": 4096,
+    "max_total_tokens": 500000,
+    "repairs": 1,
+    "cycles": 10,
+    "interval_ms": 30000
+  }
+}

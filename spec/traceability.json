@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "normative_specification": "spec/COGNIZER.sudo.md",
+  "operations": [
+    {
+      "source": [
+        "src/config.mjs",
+        "schemas/config.schema.json"
+      ],
+      "section": "Config",
+      "tests": [
+        "tests/safety.test.mjs"
+      ],
+      "issues": [
+        2,
+        10
+      ]
+    },
+    {
+      "source": [
+        "src/host.mjs",
+        "src/process.mjs"
+      ],
+      "section": "HostBinding",
+      "tests": [
+        "tests/integration.test.mjs",
+        "tests/safety.test.mjs"
+      ],
+      "issues": [
+        3,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "source": [
+        "src/inference.mjs",
+        "schemas/step.schema.json"
+      ],
+      "section": "InferenceAdapter",
+      "tests": [
+        "tests/integration.test.mjs",
+        "tests/safety.test.mjs"
+      ],
+      "issues": [
+        4,
+        8,
+        11
+      ]
+    },
+    {
+      "source": [
+        "src/driver.mjs",
+        "src/state.mjs",
+        "bin/shem.mjs"
+      ],
+      "section": "Invocation",
+      "tests": [
+        "tests/integration.test.mjs",
+        "tests/safety.test.mjs"
+      ],
+      "issues": [
+        5,
+        6,
+        7,
+        9,
+        11
+      ]
+    },
+    {
+      "source": [
+        "tools/parity.mjs",
+        "tools/package.mjs",
+        "tools/prepare-upstream.py"
+      ],
+      "section": "Qualification",
+      "tests": [
+        "tests/parity.test.mjs"
+      ],
+      "issues": [
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "source": [
+        "src/util.mjs"
+      ],
+      "section": "HostBinding / InferenceAdapter / Invocation shared bounds",
+      "tests": [
+        "tests/safety.test.mjs"
+      ],
+      "issues": [
+        3,
+        4,
+        9,
+        11
+      ]
+    }
+  ],
+  "fixtures": "fixtures/operational-cases.json",
+  "limits": "Mappings describe implemented scope; they do not close full issue acceptance criteria. See docs/IMPLEMENTATION_STATUS.md."
+}

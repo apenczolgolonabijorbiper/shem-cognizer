@@ -1,0 +1,4 @@
+node_modules/
+dist/
+.shem/
+*.private.json
