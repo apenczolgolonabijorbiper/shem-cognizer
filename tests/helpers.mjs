@@ -21,7 +21,7 @@ export const limits = {
   interval_ms: 1000,
 };
 export function temporary(t) {
-  const p = fs.mkdtempSync(path.join(os.tmpdir(), "shem-test-"));
+  const p = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), "shem-test-"));
   t.after(() => fs.rmSync(p, { recursive: true, force: true }));
   return p;
 }

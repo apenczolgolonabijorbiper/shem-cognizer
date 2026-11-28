@@ -30,6 +30,7 @@ export function filesAt(root) {
     }
   }
   result.push(
+    ".gitattributes",
     "README.md",
     "package.json",
     "package-lock.json",

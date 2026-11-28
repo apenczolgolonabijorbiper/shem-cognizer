@@ -2,7 +2,8 @@
   "schema_version": 1,
   "contract": 1,
   "files": {
-    ".github/workflows/ci.yml": "a1ad1b96403cfbe9f23450e83133c4036e6eaa26027aacd0bff54b8c80906fa9",
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    ".github/workflows/ci.yml": "f4bb4c20a8c4333ddd32daa4b0ded0ab2983ab9c03de1600ff86bd248ba8256e",
     "README.md": "e5c6b12dde1bd0e3b6e5092aede24eff7e446d8feaa2b517d21a128884cb31fb",
     "bin/shem.mjs": "bd12fdf0644476e5b901b0d2d11714a23fad5d609dabba00052132f42164f36d",
     "compatibility.json": "8c8f51ef3cef5e3953260b3465e9b44a6b766dcb8ceea778a8a9e0ca4e516db7",
@@ -34,13 +35,13 @@
     "src/state.mjs": "9bd4420d74794c21b7afc09af050bb5cde138057f822317e9196e96ab9c966bb",
     "src/util.mjs": "f125f0ed0354d08afe898843cec874ba0ebf71e46ce379d6f052640f6f6c7a07",
     "tests/fake-agent.mjs": "945c43bc77eaf0cd1b440855fcd50ee30da5344b243ced00cc20eed78d1c3f44",
-    "tests/helpers.mjs": "47616122d45c7fb41a4f65ac441f8f857efe00cc0afd18836650bc3b57ef5ae4",
+    "tests/helpers.mjs": "d148b526e85a9bed5af3c96b25776b932b43dce6e30a87ee295d2ac3b0e53b65",
     "tests/integration.test.mjs": "6422cebf8504554c39927843af7b72712222a30943fdca9ab6f308e847dc4072",
     "tests/parity.test.mjs": "d6d8604acf7ea1a5d11bc95f7660b9c28f124e8fea54512e9bd65a2108b00b72",
     "tests/safety.test.mjs": "ddcb4c0664a93e3a152320f2246092ceb9f5290ef261a4d587b7b9b65988d669",
     "tests/scripted-steps.mjs": "40b47a794e4032409b80ce6b9a88c09cf24d94cf9965554b8dd4fb3b6ea9b322",
     "tools/package.mjs": "bb2b4b8aab8ef2ce2cd6b9cd393345e049b72690be38ec971c8c34ace4e2035d",
-    "tools/parity.mjs": "9eb81d190078707bc1e3c557d6bd33edac5561250ceb93380671a80caa22b50f",
+    "tools/parity.mjs": "cb315dfc1275fedd7860db3cc2b2df592264ac577666b21aaafc4bf660fe81a1",
     "tools/prepare-upstream.py": "43e49276a1ff8d82fddb07816bc943a50793d2def93c40342d9191fc8b0b5fd9"
   }
 }
