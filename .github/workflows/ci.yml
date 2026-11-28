@@ -1,0 +1,48 @@
+name: Candidate verification
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            node: "22.12.0"
+          - os: ubuntu-latest
+            node: "24"
+          - os: windows-latest
+            node: "24"
+          - os: macos-latest
+            node: "24"
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: "3.12"
+      - run: npm ci --ignore-scripts
+      - run: npm run check
+      - name: Check same-change source/specification/vectors
+        if: github.event_name == 'pull_request'
+        run: node tools/parity.mjs --base "${{ github.event.pull_request.base.sha }}"
+      - name: Prepare verified published upstream bytes
+        shell: bash
+        run: |
+          python tools/prepare-upstream.py --destination "$RUNNER_TEMP/shem-upstreams"
+          npm ci --ignore-scripts --prefix "$RUNNER_TEMP/shem-upstreams/chelm-host"
+          echo "SHEM_CHELM_ROOT=$RUNNER_TEMP/shem-upstreams/chelm-host" >> "$GITHUB_ENV"
+          echo "SHEM_HARNESS_ROOT=$RUNNER_TEMP/shem-upstreams/golem-harness" >> "$GITHUB_ENV"
+      - name: Full deterministic matrix
+        shell: bash
+        run: npm test

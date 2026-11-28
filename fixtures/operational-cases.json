@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "committed-response-loss",
+      "input": {
+        "phase": "submit_pending",
+        "host_status": "committed",
+        "local_deadline": "expired"
+      },
+      "expect": {
+        "next_operation": "status",
+        "inference_calls": 0,
+        "submit_calls": 0,
+        "state": "committed"
+      }
+    },
+    {
+      "id": "pending-response-loss",
+      "input": {
+        "phase": "submit_pending",
+        "host_status": "assigned"
+      },
+      "expect": {
+        "next_operation": "status",
+        "retry": "identical-submission",
+        "new_inference": false
+      }
+    },
+    {
+      "id": "unknown-inference",
+      "input": {
+        "phase": "inference_pending",
+        "restart": true
+      },
+      "expect": {
+        "outcome": "operator-review",
+        "automatic_repeat": false
+      }
+    },
+    {
+      "id": "binding-injection",
+      "input": {
+        "type": "read",
+        "operation": "context",
+        "input": {
+          "work_id": "another-instance"
+        }
+      },
+      "expect": {
+        "outcome": "binding_override_forbidden"
+      }
+    },
+    {
+      "id": "read-only-learning",
+      "input": {
+        "mode": "read_only",
+        "files": ["result.json", "learning.json"]
+      },
+      "expect": {
+        "outcome": "read_only_learning_forbidden"
+      }
+    },
+    {
+      "id": "unqualified-pair",
+      "input": {
+        "chelm": "1.4.0",
+        "harness": "0.15.0"
+      },
+      "expect": {
+        "claims": 0,
+        "outcome": "unsupported_pair"
+      }
+    },
+    {
+      "id": "scalar-upload",
+      "input": {
+        "text": "Za\u017c\u00f3\u0142\u0107 \ud83d\ude00 \u6f22\u5b57",
+        "maximum_chunk_bytes": 8
+      },
+      "expect": {
+        "hash_preserved": true,
+        "unpaired_surrogates": 0
+      }
+    },
+    {
+      "id": "lease-renewal",
+      "input": {
+        "queue": "memory",
+        "renewal": "head-moved"
+      },
+      "expect": {
+        "rebase": "public-host-operation",
+        "review": "new-model-step",
+        "revision": "increment"
+      }
+    },
+    {
+      "id": "semantic-distinction",
+      "input": {
+        "validation": "pass",
+        "publication": "committed",
+        "semantic_review": null
+      },
+      "expect": {
+        "semantic_acceptance": false,
+        "release_ready": false
+      }
+    },
+    {
+      "id": "read-response-loss",
+      "input": {
+        "phase": "read_pending",
+        "restart": true
+      },
+      "expect": {
+        "next_operation": "same-read",
+        "new_inference": false
+      }
+    },
+    {
+      "id": "validation-warning",
+      "input": {
+        "validation": "pass",
+        "warnings": ["review-needed"]
+      },
+      "expect": {
+        "publication": false,
+        "outcome": "validation_warnings_require_operator_review"
+      }
+    },
+    {
+      "id": "principal-rotation",
+      "input": {
+        "phase": "claim_pending",
+        "original_principal": "worker-a",
+        "current_principal": "worker-b"
+      },
+      "expect": {
+        "claims": 0,
+        "outcome": "principal_changed"
+      }
+    },
+    {
+      "id": "mcp-error-without-code",
+      "input": {
+        "isError": true
+      },
+      "expect": {
+        "error": "host_refused",
+        "receipt_invented": false
+      }
+    }
+  ]
+}

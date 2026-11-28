@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "read"
+        },
+        "operation": {
+          "enum": ["context", "source", "read", "receipt"]
+        },
+        "input": {
+          "type": "object"
+        }
+      },
+      "required": ["type", "operation", "input"],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "final"
+        },
+        "files": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      },
+      "required": ["type", "files"],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "stop"
+        },
+        "reason": {
+          "enum": ["insufficient_evidence", "cancelled", "refused", "budget"]
+        }
+      },
+      "required": ["type", "reason"],
+      "additionalProperties": false
+    }
+  ],
+  "type": "object"
+}

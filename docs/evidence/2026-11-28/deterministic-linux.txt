@@ -1,0 +1,38 @@
+✔ published pair cli / process: observation and grounded cognitive receipt (10863.140326ms)
+✔ published pair cli / structured_text: observation and grounded cognitive receipt (10885.813501ms)
+✔ published pair cli / native_tools: observation and grounded cognitive receipt (10347.131233ms)
+✔ published pair stdio / process: observation and grounded cognitive receipt (5008.425106ms)
+✔ published pair stdio / structured_text: observation and grounded cognitive receipt (4821.960447ms)
+✔ published pair stdio / native_tools: observation and grounded cognitive receipt (4533.61352ms)
+✔ empty inbox question needs_input independently from observation leases (6035.674671ms)
+✔ published pair HTTP MCP / process: scoped routing, source processing and result receipt (5354.281484ms)
+✔ published pair HTTP MCP / native_tools: scoped routing, source processing and result receipt (5043.98553ms)
+✔ published pair HTTP MCP / response_loss: scoped routing, source processing and result receipt (4747.049585ms)
+✔ provider renewal requires a reviewed rebase and new staged revision (5930.943668ms)
+✔ host validation rejects a fabricated source quotation; no completion is invented (4998.341369ms)
+✔ source/specification/fixture inventory and hashes match (3.061344ms)
+✔ source, spec and fixture tampering each fail closed (6.545057ms)
+✔ response loss after commit: restart recovers receipt without submit or inference (5.597145ms)
+✔ unknown publication retries identical frozen identity, even after local deadline (1.292552ms)
+✔ changed submission and unknown inference cannot silently replay (1.50917ms)
+✔ private state locks competing writers and refuses a different endpoint scope (1.079611ms)
+✔ UTF-8 uploads preserve every scalar and exact byte offsets (43.921076ms)
+✔ config rejects secrets in URLs, unknown keys and unqualified pairs (2.667119ms)
+✔ typed inference decisions reject action tools, malformed arguments and extra fields (0.54946ms)
+✔ HTTP errors never disclose provider bodies or credentials (35.515359ms)
+✔ stream fragments, CRLF boundaries and Unicode are parsed; missing DONE is unknown (3.451574ms)
+✔ shell-free delegated process is bounded and cancellation is explicit (106.833419ms)
+✔ unapproved pair refuses connection before claims (0.847441ms)
+✔ stopped work cannot be archived into a new claim (1.086361ms)
+✔ persisted read recovery uses the original read identity before inference (1.65507ms)
+✔ result bindings and action authority cannot be overridden by a read decision (1.067423ms)
+✔ a rotated token resolving to another principal cannot recover or claim under old identity (0.733548ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 78874.143843
+{"artifact":"/workspace/scratch/32200b8c159f/shem-cognizer/dist/shem-cognizer-0.1.0-dev.1-unqualified-candidate.tar.gz","sha256":"504576ccbff5640ae06fc133e41392f6b34ef66dab99d9e5e4bd08d52f0ca44d","qualified":false}

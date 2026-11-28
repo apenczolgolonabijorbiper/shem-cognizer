@@ -1,6 +1,10 @@
 # Shem cognizer implementation plan
 
-Status: **planned; implementation and acceptance are pending**. Reviewed 2026-11-25.
+Status of this original plan: historical planning snapshot reviewed 2026-11-25.
+A runnable implementation candidate now exists; see [current implementation and
+acceptance status](IMPLEMENTATION_STATUS.md) for implemented scope, blockers and
+the verified 2026-11-28 upstream pair. Statements below about planned commands and
+then-published versions describe the original snapshot, not current availability.
 Tracker: [#1](https://github.com/apenczolgolonabijorbiper/shem-cognizer/issues/1).
 
 > An optional cognizer that brings Golem14-harness to life in Chelm-host through local or remote cognitive processing.

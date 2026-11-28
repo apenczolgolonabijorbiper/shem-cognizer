@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "invocation_id",
+    "state",
+    "queue",
+    "receipt",
+    "validation",
+    "semantic_review",
+    "durable_checkpoint",
+    "model",
+    "usage",
+    "error"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "invocation_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "state": {
+      "type": "string"
+    },
+    "queue": {
+      "enum": ["memory", "cognitive"]
+    },
+    "receipt": {
+      "type": ["object", "null"]
+    },
+    "validation": {
+      "type": ["object", "null"]
+    },
+    "semantic_review": {
+      "type": ["object", "null"]
+    },
+    "durable_checkpoint": {
+      "type": ["object", "null"]
+    },
+    "model": {
+      "type": ["object", "null"]
+    },
+    "usage": {
+      "type": ["object", "null"]
+    },
+    "error": {
+      "type": ["string", "null"]
+    }
+  },
+  "additionalProperties": true
+}
